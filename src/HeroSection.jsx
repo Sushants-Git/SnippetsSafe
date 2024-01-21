@@ -18,7 +18,7 @@ function HeroSection({ handleWindowChange }) {
           className="seeBookmarks"
           onClick={() => handleWindowChange("seeBookmarks")}
         >
-          see bookmarks
+          see codemarks
         </button>
       </div>
     </div>

@@ -2,12 +2,15 @@ import { useState, useEffect, useRef } from "react";
 import Preview from "./Preview";
 
 function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
+  console.log(dataArray)
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
   const [popUpCodeSnippet, setPopUpCodeSnippet] = useState("");
   const [popUpDescribe, setPopUpDescribe] = useState("");
   const [popUpTags, setPopUpTags] = useState([]);
   const [outputGenerated, setOutputGenerated] = useState(false);
   const [describe, setDescribe] = useState("");
+
+  const [deletionMode, setDeletionMode] = useState(false);
 
   // Model loading
   const [ready, setReady] = useState(null);
@@ -26,6 +29,19 @@ function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
   function createAlikeArray() {
     setAlikeArray([]);
     dataArray.map((data) => classify(describe, data.describe, data));
+  }
+
+  function deleteFromDataArray(id) {
+    console.log(id);
+    setDataArray((prevValue) => {
+      let temp = [];
+      for (let i = 0; i < prevValue.length; i++) {
+        if (prevValue[i].id !== id) {
+          temp.push(prevValue[i]);
+        }
+      }
+      return temp;
+    });
   }
 
   console.log(alikeArray);
@@ -207,7 +223,13 @@ function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
                 </button>
               </div>
               <div className="edit-button-wrapper">
-                <button id="edit-button">Edit Bookmarks</button>
+                <button
+                  id="edit-button"
+                  onClick={() => setDeletionMode((prevValue) => !prevValue)}
+                >
+                  Edit CodeMarks
+                </button>
+                {deletionMode && <p>Click on Any Bookmark to delete it</p>}
               </div>
               <div id="edit-message-wrapper">
                 Click on Any Bookmark to delete it
@@ -229,7 +251,10 @@ function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
                 <div id="bookmark-table-content">
                   {dataArray.map((data, index) => {
                     return (
-                      <div key={data.id}>
+                      <div
+                        key={data.id}
+                        onClick={(e) => deleteFromDataArray(data.id)}
+                      >
                         <div className="titles-content" data-id={data.id}>
                           <div className="hash" id="num">
                             {index + 1}

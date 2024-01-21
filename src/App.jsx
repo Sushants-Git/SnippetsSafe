@@ -3,6 +3,7 @@ import HeroSection from "./HeroSection";
 import SnippitSection from "./SnippitSection";
 import SeeBookmarksSection from "./SeeBookmarksSection";
 import { v4 as uuidv4 } from "uuid";
+import { search } from "./MongoDB";
 import "./App.css";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   });
 
   function getData() {
+    search().then((data) => setDataArray(data));
     return [];
   }
 
@@ -36,7 +38,7 @@ function App() {
   }
   return (
     <>
-      <button
+      {/* <button
         style={{ position: "absolute" }}
         onClick={() =>
           setDataArray([
@@ -65,7 +67,7 @@ function App() {
         }
       >
         Test Data
-      </button>
+      </button> */}
       {selectedWindow === "home" && (
         <HeroSection handleWindowChange={handleWindowChange} />
       )}

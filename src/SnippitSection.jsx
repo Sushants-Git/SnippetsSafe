@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { handleSubmit, MongoDB } from "./MongoDB";
 
 function SnippitSection({ addToDataArray, handleWindowChange }) {
   const [codeSnippit, setCodeSnippit] = useState("");
@@ -14,10 +15,7 @@ function SnippitSection({ addToDataArray, handleWindowChange }) {
 
   return (
     <div className="addSnippitsSection">
-      <button
-        className="backButton"
-        onClick={() => handleWindowChange("home")}
-      >
+      <button className="backButton" onClick={() => handleWindowChange("home")}>
         <svg
           width="64"
           height="64"
@@ -88,6 +86,12 @@ function SnippitSection({ addToDataArray, handleWindowChange }) {
           onClick={() => {
             if (codeSnippit.trim() !== "") {
               addToDataArray(codeSnippit, describe, tags);
+              handleSubmit({
+                id: uuidv4(),
+                codeSnippit: codeSnippit,
+                describe: describe,
+                tags: tags,
+              });
               setCodeSnippit("");
               setDescribe("");
               setTags([]);
