@@ -165,7 +165,7 @@ function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
                 </p>
               </div>
 
-              <div className="popUpDescribe">
+              <div className="popUpTags">
                 <p>Tags</p>
                 <p>
                   {popUpTags.map((tag, index) => {
@@ -178,7 +178,7 @@ function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
                 </p>
               </div>
 
-              <div className="popUpTags">
+              <div className="popUpDescribe">
                 <p>Describe</p>
                 <p>{popUpDescribe}</p>
               </div>

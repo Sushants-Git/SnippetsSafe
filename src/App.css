@@ -541,14 +541,28 @@ input:disabled,
 }
 
 .popUpCodeSnippetOutput {
-  overflow: scroll;
-  height: 65vh;
+  overflow-y: scroll;
+  max-height: 65vh;
 }
 
 .popUpDescribe {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.popUpCodeSnippet p:nth-child(1) {
+  font-weight: bolder;
+}
+
+.popUpDescribe p:nth-child(1) {
+  font-weight: bolder;
+  margin-top: 10px;
+}
+
+.popUpTags p:nth-child(1) {
+  font-weight: bolder;
+  margin-top: 10px;
 }
 
 .popUpTags {
