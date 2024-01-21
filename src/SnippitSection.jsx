@@ -85,12 +85,13 @@ function SnippitSection({ addToDataArray, handleWindowChange }) {
           id="save"
           onClick={() => {
             if (codeSnippit.trim() !== "") {
-              addToDataArray(codeSnippit, describe, tags);
               handleSubmit({
                 id: uuidv4(),
                 codeSnippit: codeSnippit,
                 describe: describe,
                 tags: tags,
+              }).then((data) => {
+                addToDataArray(data, codeSnippit, describe, tags);
               });
               setCodeSnippit("");
               setDescribe("");

@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
+import { handleDelete } from "./MongoDB";
 import Preview from "./Preview";
 
 function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
-  console.log(dataArray)
+  console.log(dataArray);
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
   const [popUpCodeSnippet, setPopUpCodeSnippet] = useState("");
   const [popUpDescribe, setPopUpDescribe] = useState("");
@@ -42,6 +43,7 @@ function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
       }
       return temp;
     });
+    handleDelete(id);
   }
 
   console.log(alikeArray);
@@ -253,7 +255,9 @@ function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
                     return (
                       <div
                         key={data.id}
-                        onClick={(e) => deleteFromDataArray(data.id)}
+                        onClick={(e) => {
+                          deletionMode && deleteFromDataArray(data.id);
+                        }}
                       >
                         <div className="titles-content" data-id={data.id}>
                           <div className="hash" id="num">

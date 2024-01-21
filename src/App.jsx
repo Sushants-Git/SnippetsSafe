@@ -19,12 +19,12 @@ function App() {
 
   console.log(dataArray);
 
-  function addToDataArray(codeSnippit, describe, tags) {
+  function addToDataArray(id, codeSnippit, describe, tags) {
     setDataArray((prevValue) => {
       return [
         ...prevValue,
         {
-          id: uuidv4(),
+          id: id,
           codeSnippit: codeSnippit,
           describe: describe,
           tags: tags,

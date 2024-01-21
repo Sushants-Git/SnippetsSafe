@@ -59,55 +59,55 @@ const MongoDB = () => {
   //   };
 
   //delete function
-  const handleDelete = async (objectId) => {
-    try {
-      // Construct the endpoint URL with the objectId parameter
-      const endpointUrl = `https://asia-south1.gcp.data.mongodb-api.com/app/application-0-adzlt/endpoint/deleteData?id=${objectId}`;
+  //   const handleDelete = async (objectId) => {
+  //     try {
+  //       // Construct the endpoint URL with the objectId parameter
+  //       const endpointUrl = `https://asia-south1.gcp.data.mongodb-api.com/app/application-0-adzlt/endpoint/deleteData?id=${objectId}`;
 
-      // Make the DELETE request to the endpoint
-      const response = await fetch(endpointUrl, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  //       // Make the DELETE request to the endpoint
+  //       const response = await fetch(endpointUrl, {
+  //         method: "DELETE",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       });
 
-      // Check if the request was successful (status code 200)
-      if (response.ok) {
-        const deletedData = await response.json();
-        console.log("Document deleted:", deletedData);
+  //       // Check if the request was successful (status code 200)
+  //       if (response.ok) {
+  //         const deletedData = await response.json();
+  //         console.log("Document deleted:", deletedData);
 
-        // Update the UI or perform any other necessary actions
-      } else {
-        console.error("Failed to delete document:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  //         // Update the UI or perform any other necessary actions
+  //       } else {
+  //         console.error("Failed to delete document:", response.statusText);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //     }
+  //   };
 
   //search function to fetch data
 
-//   const search = async () => {
-//     try {
-//       const response = await fetch(
-//         "https://asia-south1.gcp.data.mongodb-api.com/app/application-0-adzlt/endpoint/fetchData"
-//       );
-//       const data2 = await response.json();
+  //   const search = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://asia-south1.gcp.data.mongodb-api.com/app/application-0-adzlt/endpoint/fetchData"
+  //       );
+  //       const data2 = await response.json();
 
-//       const dataElements = data2.map((item, index) => (
-//         <div key={index}>
-//           <p>{item.Data}</p>
-//           <button onClick={() => handleDelete(item._id)}>Delete</button>
-//         </div>
-//       ));
+  //       const dataElements = data2.map((item, index) => (
+  //         <div key={index}>
+  //           <p>{item.Data}</p>
+  //           <button onClick={() => handleDelete(item._id)}>Delete</button>
+  //         </div>
+  //       ));
 
-//       console.log(dataElements);
-//       setFetchedData(dataElements);
-//     } catch (error) {
-//       console.error("Error:", error);
-//     }
-//   };
+  //       console.log(dataElements);
+  //       setFetchedData(dataElements);
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //     }
+  //   };
 
   return (
     <div>
@@ -123,6 +123,33 @@ const MongoDB = () => {
       {fetchedData} */}
     </div>
   );
+};
+
+const handleDelete = async (objectId) => {
+  try {
+    // Construct the endpoint URL with the objectId parameter
+    const endpointUrl = `https://asia-south1.gcp.data.mongodb-api.com/app/application-0-adzlt/endpoint/deleteData?id=${objectId}`;
+
+    // Make the DELETE request to the endpoint
+    const response = await fetch(endpointUrl, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    // Check if the request was successful (status code 200)
+    if (response.ok) {
+      const deletedData = await response.json();
+      console.log("Document deleted:", deletedData);
+
+      // Update the UI or perform any other necessary actions
+    } else {
+      console.error("Failed to delete document:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
 };
 
 const handleSubmit = async (codeSnippitData) => {
@@ -146,7 +173,7 @@ const handleSubmit = async (codeSnippitData) => {
       fetchParams
     );
     const data = await response.json();
-    console.log(data);
+    return data.insertedId;
   } catch (error) {
     console.error("Error:", error);
   }
@@ -159,15 +186,14 @@ const search = async () => {
     );
     const data2 = await response.json();
 
-    const dataElements = data2.map(({ Data }) => {
-      return JSON.parse(Data);
+    const dataElements = data2.map(({ Data, _id }) => {
+      return { ...JSON.parse(Data), id: _id };
     });
 
-    // console.log(dataElements);
     return dataElements;
   } catch (error) {
     console.error("Error:", error);
   }
 };
 
-export { MongoDB, handleSubmit, search };
+export { MongoDB, handleSubmit, search, handleDelete };
