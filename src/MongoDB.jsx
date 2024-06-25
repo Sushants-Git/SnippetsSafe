@@ -111,7 +111,7 @@ const MongoDB = () => {
 
   return (
     <div>
-      {/* <label htmlFor="newData">Code Snippet:</label>
+       <label htmlFor="newData">Code Snippet:</label>
       <textarea
         type="text"
         id="newData"
@@ -120,7 +120,7 @@ const MongoDB = () => {
       />
       <button onClick={handleSubmit}>Submit</button>
       <button onClick={search}>Search</button>
-      {fetchedData} */}
+      {fetchedData} 
     </div>
   );
 };
@@ -128,7 +128,7 @@ const MongoDB = () => {
 const handleDelete = async (objectId) => {
   try {
     // Construct the endpoint URL with the objectId parameter
-    const endpointUrl = `https://asia-south1.gcp.data.mongodb-api.com/app/application-0-adzlt/endpoint/deleteData?id=${objectId}`;
+    const endpointUrl = `https://southeastasia.azure.data.mongodb-api.com/app/application-0-hgkxoce/endpoint/deleteData?id=${objectId}`;
 
     // Make the DELETE request to the endpoint
     const response = await fetch(endpointUrl, {
@@ -169,7 +169,7 @@ const handleSubmit = async (codeSnippitData) => {
 
     // Make the post request
     const response = await fetch(
-      "https://asia-south1.gcp.data.mongodb-api.com/app/application-0-adzlt/endpoint/createData",
+"https://southeastasia.azure.data.mongodb-api.com/app/application-0-hgkxoce/endpoint/createData",
       fetchParams
     );
     const data = await response.json();
@@ -182,7 +182,7 @@ const handleSubmit = async (codeSnippitData) => {
 const search = async () => {
   try {
     const response = await fetch(
-      "https://asia-south1.gcp.data.mongodb-api.com/app/application-0-adzlt/endpoint/fetchData"
+        "https://southeastasia.azure.data.mongodb-api.com/app/application-0-hgkxoce/endpoint/fetchData"
     );
     const data2 = await response.json();
 
