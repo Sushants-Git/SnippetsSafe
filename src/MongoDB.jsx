@@ -181,23 +181,19 @@ const handleSubmit = async (codeSnippitData) => {
 
 const search = async () => {
   try {
-    console.log("ran");
     const response = await fetch(
       "https://southeastasia.azure.data.mongodb-api.com/app/application-0-hgkxoce/endpoint/fetchData",
     );
     const data2 = await response.json();
-    console.log(data2);
 
     const dataElements = [];
 
     for (let i = 0; i < data2.length; i++) {
       const { Data, _id } = data2[i];
       if (!Data) continue;
-      console.log("reached")
       dataElements.push({ ...JSON.parse(Data), id: _id });
     }
 
-    console.log("lol", dataElements);
     return dataElements;
   } catch (error) {
     console.error("Error:", error);

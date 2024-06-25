@@ -17,7 +17,6 @@ function App() {
     return [];
   }
 
-  console.log(dataArray);
 
   function addToDataArray(id, codeSnippit, describe, tags) {
     setDataArray((prevValue) => {

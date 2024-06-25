@@ -3,7 +3,6 @@ import { handleDelete } from "./MongoDB";
 import Preview from "./Preview";
 
 function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
-  console.log(dataArray);
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
   const [popUpCodeSnippet, setPopUpCodeSnippet] = useState("");
   const [popUpDescribe, setPopUpDescribe] = useState("");
@@ -46,7 +45,7 @@ function SeeBookmarksSection({ dataArray, setDataArray, handleWindowChange }) {
     handleDelete(id);
   }
 
-  console.log(alikeArray);
+  // console.log(alikeArray);
 
   const classify = (inputOne, inputTwo, obj) => {
     setDisabled(true);
