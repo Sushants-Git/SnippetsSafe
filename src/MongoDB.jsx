@@ -111,7 +111,7 @@ const MongoDB = () => {
 
   return (
     <div>
-       <label htmlFor="newData">Code Snippet:</label>
+      {/*       <label htmlFor="newData">Code Snippet:</label>
       <textarea
         type="text"
         id="newData"
@@ -120,7 +120,7 @@ const MongoDB = () => {
       />
       <button onClick={handleSubmit}>Submit</button>
       <button onClick={search}>Search</button>
-      {fetchedData} 
+      {fetchedData}  */}
     </div>
   );
 };
@@ -169,8 +169,8 @@ const handleSubmit = async (codeSnippitData) => {
 
     // Make the post request
     const response = await fetch(
-"https://southeastasia.azure.data.mongodb-api.com/app/application-0-hgkxoce/endpoint/createData",
-      fetchParams
+      "https://southeastasia.azure.data.mongodb-api.com/app/application-0-hgkxoce/endpoint/createData",
+      fetchParams,
     );
     const data = await response.json();
     return data.insertedId;
@@ -181,15 +181,23 @@ const handleSubmit = async (codeSnippitData) => {
 
 const search = async () => {
   try {
+    console.log("ran");
     const response = await fetch(
-        "https://southeastasia.azure.data.mongodb-api.com/app/application-0-hgkxoce/endpoint/fetchData"
+      "https://southeastasia.azure.data.mongodb-api.com/app/application-0-hgkxoce/endpoint/fetchData",
     );
     const data2 = await response.json();
+    console.log(data2);
 
-    const dataElements = data2.map(({ Data, _id }) => {
-      return { ...JSON.parse(Data), id: _id };
-    });
+    const dataElements = [];
 
+    for (let i = 0; i < data2.length; i++) {
+      const { Data, _id } = data2[i];
+      if (!Data) continue;
+      console.log("reached")
+      dataElements.push({ ...JSON.parse(Data), id: _id });
+    }
+
+    console.log("lol", dataElements);
     return dataElements;
   } catch (error) {
     console.error("Error:", error);
