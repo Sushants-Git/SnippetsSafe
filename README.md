@@ -1,5 +1,7 @@
 This was made as a hackathon project for [Frost Hacks 2024]([https://devfolio.co/projects/yaash-yet-another-ai-shell-192b](https://devpost.com/software/snippetsafe?ref_content=my-projects-tab&ref_feature=my_projects)) by [Vee](https://github.com/veesesh), [Ashish Malla](https://github.com/im45145v), [Siddarth](https://github.com/siddarth2810) and [Sushant](https://github.com/Sushants-Git)
 
+Demo : [SnippetSafe](https://www.youtube.com/watch?v=dL4a-QIyANA)
+
 --
 
 # SnippetSafe
